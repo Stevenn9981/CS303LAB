@@ -1,0 +1,704 @@
+\documentclass[conference,compsoc]{IEEEtran}
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society  papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later.
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{algorithm,float}
+\usepackage{algorithmic}
+
+\makeatletter
+\newenvironment{breakablealgorithm}
+  {% \begin{breakablealgorithm}
+   \begin{center}
+     \refstepcounter{algorithm}% New algorithm
+     \hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled 画线
+     \renewcommand{\caption}[2][\relax]{% Make a new \caption
+       {\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
+       \ifx\relax##1\relax % #1 is \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+       \else % #1 is not \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+       \fi
+       \kern2pt\hrule\kern2pt
+     }
+  }{% \end{breakablealgorithm}
+     \kern2pt\hrule\relax% \@fs@post for \@fs@ruled 画线
+   \end{center}
+  }
+\makeatother
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Influence Maximization Problem Project}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Wentao Ning  11610914}
+\IEEEauthorblockA{Computer Science and technology\\
+Southern University of Science and Technology\\
+11610914@mail.sustc.edu.cn}}
+
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% for over three affiliations, or if they all won't fit within the width
+% of the page (and note that there is less available width in this regard for
+% compsoc conferences compared to traditional conferences), use this
+% alternative format:
+% 
+%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
+%Homer Simpson\IEEEauthorrefmark{2},
+%James Kirk\IEEEauthorrefmark{3}, 
+%Montgomery Scott\IEEEauthorrefmark{3} and
+%Eldon Tyrell\IEEEauthorrefmark{4}}
+%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
+%Georgia Institute of Technology,
+%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
+%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
+%Email: homer@thesimpsons.com}
+%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
+%Telephone: (800) 555--1212, Fax: (888) 555--1212}
+%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+%\begin{abstract}
+
+%\end{abstract}
+
+% no keywords
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Preliminaries}
+\textbf{Description}: Influence Maximization Problem (IMP) is the problem of finding a
+small subset of nodes (referred to as seed set) in a social network that
+could maximize the spread of influence. The influence spread is the expected number of nodes that are
+influenced by the nodes in the seed set in a cascade manner. The Linear Threshold and Independent Cascade Models are two of the most basic and widely-studied diffusion models[1]\par
+\textbf{Application}: The IMP is often used to calculate the influence of a social network and so on. A social network, the graph of relationships and interactions
+within a group of individuals, plays a fundamental role as a
+medium for the spread of information, ideas, and influence among
+its members[1]
+
+\subsection{Software}
+I wrote this project in Python 3.6 using editor Sublime Text 2 and IDE PyCharm.
+
+\subsection{Algorithm}
+At first I wrote a preprocess function to preprocess the file and get the node number and all edges. Then I used CELF algorithm which is a kind of greedy search algorithm based on submodularity to get the final result.
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that the IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command,
+% and the \label for the overall figure must come after \caption.
+% \hfil is used as a separator to get equal spacing.
+% Watch out that the combined width of all the subfigures on a 
+% line do not exceed the text width or a line break will occur.
+%
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+%\label{fig_second_case}}
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat[]), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
+% labels, the optional argument to \subfloat must be present. If a
+% subcaption is not desired, just leave its contents blank,
+% e.g., \subfloat[].
+
+
+% An example of a floating table. Note that, for IEEE style tables, the
+% \caption command should come BEFORE the table and, given that table
+% captions serve much like titles, are usually capitalized except for words
+% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
+% and up, which are usually not capitalized unless they are the first or
+% last word of the caption. Table text will default to \footnotesize as
+% the IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that the IEEE does not put floats in the very first column
+% - or typically anywhere on the first page for that matter. Also,
+% in-text middle ("here") positioning is typically not used, but it
+% is allowed and encouraged for Computer Society conferences (but
+% not Computer Society journals). Most IEEE journals/conferences use
+% top floats exclusively. 
+% Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the
+% \fnbelowfloat command of the stfloats package.
+
+
+
+
+\section{Methodology}
+
+\subsection{Representation}
+There are 3 global variables in both ISE.py and IMP.py.
+\begin{itemize}
+
+\item \textbf{graph\_{list}}: A dict which records the adjacent list of each node 
+
+\item \textbf{graph\_{parent\_{list}}}: A dict which records the parent nodes of each node
+
+\item \textbf{neighbor\_{prob}}: A dict which records the weight of each node
+\end{itemize}
+
+\subsection{Architecture}
+There are several methods in my ISE.py file.
+
+\begin{itemize}
+\item \textbf{preprocess}: Preproccess the given file and construct the graph.
+
+\item \textbf{calculate\_{influence}}: To calculate the influence based on different diffusion model.
+
+\item \textbf{one\_{IC\_{sample}}}: To calculate the influence based on IC diffusion model.
+
+\item \textbf{one\_{LT\_{sample}}}: To calculate the influence based on LT diffusion model.
+
+\end{itemize}
+
+There are some other functions in my IMP.py file.
+\begin{itemize}
+\item \textbf{CELF}: Using a kind of greedy algorithm called CELF to calculate the result set.
+
+\item \textbf{print\_{results}}: To print result as the required format.
+\end{itemize}
+\subsection{Detail of Algorithm}
+
+There are 3 main functions in my ISE.py file.
+\begin{itemize}
+\item \textbf{one\_{IC\_{sample}}}: To calculate the influence based on IC diffusion model.
+
+\begin{breakablealgorithm}
+\caption{one\_{IC\_{sample}}}
+\begin{algorithmic} [1]
+\STATE  $AcitivitySet \leftarrow {SeedSet}$
+\STATE  $count \leftarrow len(ActivitySet)$
+\WHILE {ActivitySet is not empty}
+\STATE $newActivitySet \leftarrow \emptyset$
+\FOR {each seed in ActivitySet}
+\FOR {each inactive neighbor in seed}
+\STATE seed tries to activate neighbors with probability
+\IF{activated}
+\STATE newActivitySet.add(neighbor)
+\ENDIF
+\ENDFOR
+\ENDFOR
+\STATE $count \leftarrow count + len(newActivitySet)$
+\STATE $AcitivitySet \leftarrow newActivitySet$
+\ENDWHILE
+\RETURN count
+\end{algorithmic}
+\end{breakablealgorithm}
+
+\newpage
+
+\item \textbf{one\_{LT\_{sample}}}: To calculate the influence based on LT diffusion model.
+
+\begin{breakablealgorithm}
+\caption{one\_{LT\_{sample}}}
+\begin{algorithmic} [1]
+\STATE  $AcitivitySet \leftarrow {SeedSet}$
+\STATE  Randomly set threshold for each node
+\STATE  $count \leftarrow len(ActivitySet)$
+\WHILE {ActivitySet is not empty}
+\STATE $newActivitySet \leftarrow \emptyset$
+\FOR {each seed in ActivitySet}
+\FOR {each inactive neighbor in seed}
+\STATE calculate the weight of activated neighbors: w\_{total}
+\IF{$w\_{total} \geq neighbor.threshold$}
+\STATE update the state as Active
+\STATE newActivitySet.add(neighbor)
+\ENDIF
+\ENDFOR
+\ENDFOR
+\STATE $count \leftarrow count + len(newActivitySet)$
+\STATE $AcitivitySet \leftarrow newActivitySet$
+\ENDWHILE
+\RETURN count
+\end{algorithmic}
+\end{breakablealgorithm}
+
+
+
+\item \textbf{calculate\_{influence}}: To calculate the influence based on 10000 times iterations on LT or IC diffusion model.
+
+\begin{breakablealgorithm}
+\caption{calculate\_{influence}(seed, model)}
+\begin{algorithmic} [1]
+\STATE  $sum \leftarrow 0$
+\STATE  $times \leftarrow 10000$
+\IF{model.upper() = "IC"} 
+\FOR{$i = 1$ to $times$}
+\STATE $sum \leftarrow sum + one\_{IC\_{sample(seeds)}}$
+\ENDFOR
+\RETURN sum / times
+\ELSIF{model.upper() = "LT"}
+\FOR{$i = 1$ to $times$}
+\STATE $sum \leftarrow sum + one\_{LT\_{sample(seeds)}}$
+\ENDFOR
+\RETURN sum / times
+\ENDIF
+\end{algorithmic}
+\end{breakablealgorithm}
+
+\end{itemize}
+\newpage
+
+There is one main function in my IMP.py file.
+
+\textbf{CELF}: Using a kind of greedy algorithm called CELF to calculate the result set.
+
+\begin{breakablealgorithm}
+\caption{CELF}
+\begin{algorithmic} [1]
+\STATE  influence\_{dict} $\leftarrow$ empty dict
+\FOR{$i = 1$ to len(neighbor\_{prob})}
+\STATE influence\_{dict}[i] $\leftarrow$ calculate\_{influence}({i}, model)
+\ENDFOR
+\STATE seeds $\leftarrow$ empty set
+\STATE tmp\_{max\_{node}} $\leftarrow$ the key in influence\_{dict} having the max value
+\STATE add tmp\_{max\_{node2}} to seeds
+\STATE pop tmp\_{max\_{node}} from influence\_{dict}
+\WHILE{len(seeds) $<$ seed\_{num}}
+\STATE tmp\_{max\_{node}} $\leftarrow$ the key in influence\_{dict} having the max value
+\STATE influence\_{dict}[tmp\_{max\_{node}}] $\leftarrow$ the influence increment after adding tmp\_{max\_{node}}
+\STATE tmp\_{max\_{node2}} $\leftarrow$ the key in influence\_{dict} having the max value
+\IF {tmp\_{max\_{node2}} = tmp\_{max\_{node}}}
+\STATE add tmp\_{max\_{node2}} to seeds
+\STATE pop tmp\_{max\_{node2}} from influence\_{dict}
+\ELSE
+\STATE continue
+\ENDIF
+\ENDWHILE
+\RETURN seeds
+\end{algorithmic}
+\end{breakablealgorithm}
+
+
+
+\section{Empirical Verification}
+
+
+\subsection{Design}
+In the Empirical Verification part, I use the network.txt which is given by teacher as the input graph and the seeds.txt and seeds2.txt as input seed set to verify the ISE model. Then I use network.txt as input to verify the IMP model.
+
+\subsection{Data and data structure}
+\begin{itemize}
+\item \textbf{Data Set}: NetHEPT.txt, network.txt, seeds.txt and seeds2.txt
+
+\item \textbf{Data Structure}: list, set, dict and numpy 2D matrix.
+\end{itemize}
+\subsection{Performance \& Hyperparameters}
+\textbf{Performance Measurement}: I run my algorithm on the given files, network.txt and NetHEPT.txt. I test my ISE.py file to calculate the correctness using seeds.txt and seeds2.txt file. I test my IMP.py file to get 5 seeds and 10 seeds respectively.\par
+\textbf{Hyperparameters setting}: At first, I set the ISE Algorithm's iteration times to 10000 in my IMP.py file, When I run the IMP.py file on the NetHEPT.txt, I found it is too slow and can not get a good result on the given time. So I change the iteration times to 1000, I found the result is not change but the run time decreased dramaticly. Then I changed it to 500, the result is also unchanged but the run time decreased half. Then I continue decreasing the iteration times, but this time when I decrease the iteration times, the performance of this algorithm will be worse. So I set the iteration times to 500 finally.
+
+
+\subsection{Result}
+In the ISE test part, I let the one\_{IC\_{sample}} or one\_{LT\_{sample}} iterate 10000 times and recorded the result and used time. The result is below.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+ & \textbf{IC} & \textbf{LT} \\ \midrule
+\textbf{seeds.txt} & 5.019 / 0.23s & 5.033 / 0.05s \\
+\textbf{seeds2.txt} & 30.47 / 0.25s & 37.07 / 0.64s \\ \bottomrule
+\end{tabular}
+\caption{influence Result and Used time of each diffusion model and seed set }
+\label{my-label}
+\end{table}
+
+In the IMP test part, I set the seed set as 5 and 10 respectively, the result and the used time is below.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{@{}cll@{}}
+\toprule
+\multicolumn{1}{l}{} & \multicolumn{1}{c}{\textbf{IC}} & \multicolumn{1}{c}{\textbf{LT}} \\ \midrule
+\textbf{5} & 30.674 / 1.959s & 30.719 / 1.831s \\
+\textbf{10} & 42.75 / 5.587s & 42.862 / 6.616s \\ \bottomrule
+\end{tabular}
+\caption{influence Result and Used time of each diffusion model and seed size}
+\label{my-label}
+\end{table}
+\subsection{Conclusion}
+This project is to solving a problem called Influence Maximum Problem. I used a kind of greedy algorithm to solve this problem. Admittedly, the general greedy algorithm is not effective, so I used an algorithm called CELF which consists of greedy algorithm plus prunning based on submodularity. The advantage of  my algorithm is that this algorithm can have a good performance on the gragh which is not too large, and it is very fast to get the results. In my opinion, the disadventage of my algorithm is that my algorithm can not get a good performance on the large graph,it will take several minutes or hours to run on the large graph, which is what I need to improve.
+
+% use section* for acknowledgment
+\ifCLASSOPTIONcompsoc
+  % The Computer Society usually uses the plural form
+  \section*{Acknowledgments}
+\else
+  % regular IEEE prefers the singular form
+  \section*{Acknowledgment}
+\fi
+
+
+
+
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\begin{thebibliography}{1}
+\bibitem{reference} D. Kempe, J. Kleinberg and E. Tardos, "Maximizing the Spread of Influence through a Social Network", Cs.cornell.edu, 2003. [Online]. Available: https://www.cs.cornell.edu/home/kleinber/kdd03-inf.pdf. [Accessed: 01- Dec- 2018].
+\end{thebibliography}
+
+
+
+
+
+% that's all folks
+\end{document}
+
+
